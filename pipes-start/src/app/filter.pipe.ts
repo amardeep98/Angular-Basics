@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'filter',
-  pure: false                       //applies on the data even when it changes during run-time, not advisable to use
+  pure: false                       //applies on the data even when it changes during run-time, not advisable to use, makes pipe impure
 })
 export class FilterPipe implements PipeTransform {
 
