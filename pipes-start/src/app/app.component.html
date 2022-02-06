@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <div class="row">
+        <div class="col-xs-6">
+          <input
+            class="form-control"
+            [(ngModel)]="filterString"
+          >
+        </div>
+      </div>
+      <button class="btn btn-primary" (click)="onAddServer()">Add Server</button>
+      <hr>
+      <h3>App Status: {{appStatus | async}}</h3>
+      <!-- If async pipe not applied above, it'll behave differently. It won't wait for the value to load -->
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let server of servers | filter: 'status': filterString"
+          [ngClass]="getStatusClasses(server)">
+          <span
+            class="badge">
+            {{ server.status }}
+          </span>
+          <strong>{{ server.name | shorten}}</strong> |           <!-- custom pipe -->
+          {{ server.instanceType | uppercase}} | 
+          {{ server.started | date: 'fullDate'}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
